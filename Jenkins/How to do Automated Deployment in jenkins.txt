@@ -1,0 +1,17 @@
+*How to do Automated Deployment in jenkins*
+
+step 1:- start jenkins
+
+step 2:-goto manage plugins -> install Delpoy plugin and restart
+
+step 3:- create a new job 
+            Execute shell -> date
+            Add post build Action-> Deploy war/jar to conatiner
+ "see the jenkins path directory copy and paste the war/jar file in workspace to jenkins"
+
+step 4:- Add the server->tomcat 7
+            Add the url of tomcat
+
+step 5:- Build the project 
+"if it successfully build see the tomcat server war/jar file is Deployed"
+

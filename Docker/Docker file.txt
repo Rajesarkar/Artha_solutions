@@ -1,0 +1,31 @@
+WORKDIR /opt/
+COPY src/ .
+COPY pom.xml .
+RUN yum install java-11-openjdk
+RUN mvn clean install package
+RUN java -jar target/my-app-1.0-SNAPSHOT.jar
+RUN apk add --update my-app-1.0-SNAPSHOT.jary
+
+=============================================
+
+FROM openjdk:8
+RUN java -version
+COPY ./docker/simple-java-maven-app/src/main/java/com/mycompany/app
+WORKDIR /docker/simple-java-maven-app
+RUN apk --no-cache add maven && mvn --version
+RUN mvn package
+
+====================================================
+FROM centos:7
+LABEL maintainer="vinod"
+RUN yum install -y wget
+RUN yum install -y java
+COPY envConfig.properties /opt/
+COPY dipensec.key /opt/
+COPY apache-tomcat-8.5.40 /opt/apache-tomcat-8.5.40
+COPY workbench.war /opt/apache-tomcat-8.5.40/webapps/
+ENV DIP_CONFIG_PATH /opt/
+ENV LIC_LOC /opt/dipensec.key
+EXPOSE 8080
+CMD ["/opt/apache-tomcat-8.5.40/bin/catalina.sh", "run"]
+

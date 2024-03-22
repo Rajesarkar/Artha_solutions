@@ -1,0 +1,70 @@
+*Launch a jenkins Server through EC2 Linux*
+
+step 1) 
+*open the amazon aws console
+*create the EC2 instance
+*connect Ec2 instance to gitbash/ubuntu
+*In the security group Edit inbound rules
+ add the TCP port 8080
+
+step 2)
+ #update list of repositories
+  sudo apt-get update
+
+step 3)
+*To see the java version
+java -version
+
+ #install jre and jdk
+  sudo apt-get install openjdk-8-jre
+  sudo apt-get install openjdk-8-jdk
+
+step 4)
+ #set export variables for java
+  export JAVA_HOME='/usr/lib/jvm/jre-1.8.0-openjdk'
+  export JRE_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
+
+step 5)
+#install jenkins on debian based distributions such as ubuntu
+  wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+  sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+  sudo apt-get update
+  sudo apt-get install jenkins
+cd
+
+step 6)
+ #configures jenkins service to start at run time
+  sudo systemctl start jenkins.service
+  sudo systemctl enable jenkins.service
+ 
+step 7)
+*Access jenkins server using the public DNS of your ec2 on port 8080
+http:/{ec2-public-dns}:8080
+example: http://3.89.79.74:8080/
+
+jenkis can acess on port 8080
+
+
+
+step 8)
+To fetch initial admin password
+goto root folder
+sudo su -
+cd /var/lib/jenkins/secrets
+cat initialAdminpassword
+
+----------
+
+
+#To start jenkins on diffrent port
+update port number in 
+cd /etc/sysconfig/jenkins
+
+
+#To stop jenkins
+sudo service jenkins stop
+
+#To uninstall jenkins
+sudo service jenkins stop
+sudo apt remove jenkins
+

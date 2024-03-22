@@ -1,0 +1,17 @@
+*Add the repository in git*
+ echo "# AWS-cloud" >> README.md
+ git init
+ git add README.md
+ git commit -m "first commit"
+ git branch -M main
+ git remote add origin https://github.com/Rajesarkar/AWS-cloud.git
+ git push -u origin main
+
+
+
+
+*Remove the repository in git*
+
+commands 
+1) git remote remove origin
+2)git remote r -v

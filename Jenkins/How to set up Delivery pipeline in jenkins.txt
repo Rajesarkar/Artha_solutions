@@ -1,0 +1,25 @@
+*How to set up Delivery pipeline in jenkins*
+
+step 1:- start jenkins
+        goto manage jenkins -> install Delivey pipeline plugin
+
+step 2:- create the jobs
+         1) smple Build job
+         Execute shell -> date , echo "Bulid is sucessfull"
+         
+          2)Sample Deploy job
+        Execute shell -> date , echo "Deploy is sucessfull"
+ 
+          3)sample Realse job
+          Execute shell -> date , echo "Release is sucessfull"
+
+ step 4:- goto sample deploy job
+          configure -> Add post build action 
+
+       goto sample Release job
+       configure -> Add post build action
+
+step 5:- goto jenkins dashboard
+            click on + button
+          click on pipeline 
+          At last select the source build and final build

@@ -1,0 +1,28 @@
+*create the jenkin users and give the permissions to users*
+
+step 1) create new user
+
+manage jenkins  -> manage user -> create user ->  Apply and save
+user1
+user2
+
+step 2) create configuration
+
+manage jenkins -> manage plugins -.> install (Role-Based Stratergy) plugin
+manage jenkins -> configure global security ->Authorisathion (Role-Based stratergy) ->save and apply
+
+step 3)
+manage jenkins -> manage and Assign Roles -> Manage roles
+Global role = add (employ) ->give the access
+Project roles =add (Developer) . pattern (Dev.*)
+               add(Tester) .  pattern(Test.*)
+
+manage and Assign Roles  ->Assign roles
+Global role = add (user1 ,user2 as employee)
+Project role =add user1 as devloper , user2 as tester 
+
+save and apply
+
+step 4)logout and login to the another user
+user1 can access only devlopment jobs
+user2 can acess only testing jobs 

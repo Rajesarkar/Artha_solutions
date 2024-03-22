@@ -1,0 +1,35 @@
+*Docker storage commands*
+
+1)volume storage
+   sudo docker volume create (name)
+   sudo docker volume ls
+   sudo docker volume inspect
+   sudo docker volume rm (name)
+ #to see the docker storage
+ cd /var/lib/docker/volume/(id or name)
+
+ sudo docker run -it -d --name=king --mount source=(name),target=/apps ubuntu
+ sudo docker inspect
+ sudo docker run -it -d --name=king --volume source=(name),target=/apps ubuntu
+ sudo docker run -it -d --name=king --volume (name) ./apps ubuntu
+ sudo docker volume ls
+#creating readonly volumes
+ sudo docker run -it -d --name=king --mount source=(name),target=/apps,readonly ubuntu
+
+2)Bind mount
+   mkdir fun
+   cd fun
+   sudo docker run -it -d --name=king --mount type=bind,source=$(pwd),target=/apps ubuntu
+   sudo docker exec -it (con id ) bash
+   sudo docker inspect ls
+#whatervr file created in /apps that will automatically create in /fun directory
+    Actual data stores in main directory /fun
+ sudo docker ls
+
+sudo docker run -it -d --name=king --mount type=bind,source=$(pwd),target=/apps ubuntu
+
+3)tmpfs mount
+ sudo docker run -it -d --name=king --mount type=tmpfs,target=/apps ubuntu
+ sudo docker run -it -d --name=king --tmpfs /apps ubuntu
+sudo docker inspect 
+

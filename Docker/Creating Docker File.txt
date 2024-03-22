@@ -1,0 +1,17 @@
+step 1)create a directory
+
+step 2)write a Docker file
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+
+step 3)Build the docker file
+docker build -t html-server-image:v1 .
+
+step 4)Run the Docker file
+docker run -d -p 80:80 html-server-image:v1
+
+step 5)see the docker file running on server
+ curl localhost:80
+
+step 6) Too see the output
+  sudo docker run -it java-app java sample
