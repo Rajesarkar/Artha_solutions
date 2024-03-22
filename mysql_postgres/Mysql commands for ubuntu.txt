@@ -1,0 +1,119 @@
+*Basic MySql commands*
+
+1) my sql server permissions 
+ sudo service mysql start
+ sudo service mysql stop
+ sudo service mysql reload
+ sudo service mysql restart
+ SHOW FUNCTION STATUS WHERE db = 'your_database_name';
+ SHOW PROCEDURE STATUS WHERE db = 'your_database_name'; 
+ 
+
+2)Backup the database 
+mysqldump -u username -p database_name > database_name.sql
+
+3)To restore/import database from backup sql file
+mysql -u username -p database_name < database_name.sql
+sudo mysqldump -u root -p dip_db < dip_sbf_prod.sql
+
+4)To audit and troubleshoot error
+ sudo tail -f /var/log/mysql/error.log
+
+5)login as a root user
+ sudo mysql -u root -p
+
+6)Show the users
+ SELECT user FROM mysql.user;
+ SELECT user,host FROM mysql.user;
+ DESC mysql.user;
+ select user();
+SELECT CURRENT_USER();
+SHOW GRANTS FOR ‘local_user‘@‘localhost‘;
+SHOW GRANTS;
+sudo grep 'temporary password' /var/log/mysqld.log
+
+
+#Display Only Unique Usernames
+ SELECT DISTINCT user FROM mysql.user;
+
+7)Password Expiration and Account Locking Status
+ SELECT user, account_locked, password_expired FROM mysql.user;
+
+8)The bind address to 0.0.0.0 is just part of the steps for allowing it to accept remote connections.
+  vi /etc/mysql/my.cnf
+  vi /etc/mysql/mysql.conf.d/mysqld.cnf
+   bind-address    = 0.0.0.0
+   
+  
+
+9)delete the data base and user
+    DROP DATABASE  name;
+    DROP USER 'name'@'localhost';
+ #delete by process id PID
+    SHOW PROCESSLIST;
+    KILL Id_number;
+    DROP USER 'username'@'localhost';
+
+10)shows user host plugin
+  SELECT User, Host, plugin FROM mysql.user;
+
+11)select specifiv database;
+   use database_name;
+    show tables;
+    describe employe_details;
+
+12)creating a table
+  Create table employe_details(
+      id int (100) NOT NULL,
+      name varchar(30) NOT NULL,
+     Age int (100) NOT NULL,
+     Adress varchar (30) ,
+     Job_role varchar (80),
+     PRIMARY KEY (id)
+    );
+
+13)Alter
+#add column in table
+   alter table om
+    ADD income_sal int NOT NULL;
+
+#drop the column
+ alter table om
+     DROP COLUMN income_sal;
+
+#modify the column
+  alter table om
+     MODIFY name varchar (100) NULL;
+
+14)rename table
+  RENAME TABLE om TO omkar;
+
+15)insert value into table
+ insert into omkar (id,name)
+   VALUES (1, 'om');
+
+16)Delete data from table
+  TRUNCATE TABLE omkar;
+#delete the table
+  DROP TABLE omkar;
+
+17)create the view
+ CREATE VIEW view_name AS select id,name from table_name;
+drop view view_name;
+
+18)make innodb_strict_mode off
+ 
+ SHOW  variables LIKE '%strict%';
+ SET GLOBAL innodb_strict_mode=OFF;
+ SET GLOBAL innodb_default_row_format='dynamic';
+ SET SESSION innodb_strict_mode=OFF;
+
+
+19)for dip_functions_db;
+
+SET GLOBAL log_bin_trust_function_creators = 1;
+
+
+
+
+   

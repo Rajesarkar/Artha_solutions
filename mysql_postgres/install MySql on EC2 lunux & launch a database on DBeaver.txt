@@ -1,0 +1,60 @@
+*install MySql on EC2 lunux & launch a database on DBeaver *
+
+step 1:-update system and install mysql
+
+ sudo apt update
+ sudo apt-get install mysql-server 
+ mysql --version
+
+step 2:-Configure mysql installation
+ 
+# Create the password  to go to root folder 
+ sudo mysql_secure_installation
+
+step 3:- login to mysql to create user and database
+  
+ sudo mysql  (or)   mysql -u root-p
+
+#create the Database
+ CREATE DATABASE mynewdatabase;
+ SHOW DATABASES;
+
+#create the user
+ CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+ GRANT ALL PRIVILEGES ON mynewdatabase.* TO 'myuser'@'localhost' WITH GRANT OPTION;
+                  
+:- to connect remotely
+
+ ALTER USER 'om'@'%' IDENTIFIED WITH mysql_native_password BY 'Raje';
+ CREATE USER 'om'@'%' IDENTIFIED WITH mysql_native_password BY 'Raje';
+
+GRANT ALL PRIVILEGES ON dip_test.* TO 'omkar'@'%' WITH GRANT OPTION;
+#Apply database changes
+
+ FLUSH PRIVILEGES;
+ EXIT;
+
+step 4:-configure mysql root password
+
+ sudo mysql
+ SELECT user,authentication_string,plugin,host FROM mysql.user;
+
+ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mypassword';
+        :-for remote connection
+ ALTER USER 'omkar'@'%' IDENTIFIED WITH mysql_native_password BY 'Rajesarkar@123';
+
+ FLUSH PRIVILEGES;
+ SELECT user,authentication_string,plugin,host FROM mysql.user;
+ EXIT;
+
+step 5:- verify mysql database
+
+ sudo service mysql status
+ sudo service mysql start
+ sudo service mysql stop
+ sudo service mysql reload
+ sudo service mysql restart
+
+sudo mysqladmin -p -u root version
+
+
