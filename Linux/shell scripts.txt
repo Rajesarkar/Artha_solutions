@@ -1,0 +1,68 @@
+*find top 5 directories*
+
+#! /usr/bin/bash
+echo "enter your path"
+read  dir
+find $dir  -printf '%s %p\n'| sort -nr | head -5
+
+*Reverse string*
+
+#!/usr/bin/bash
+echo "enter a string "
+read string
+strlen=${#string}
+for (( i=$strlen-1; i>=0; i-- ));
+do
+    revstr=$revstr${string:$i:1}
+done
+echo "Original String : $string"
+echo "Reversed String : $revstr"
+
+*Reverse number*
+#!/usr/bin/bash
+echo "Enter any number"
+read number
+temp=$number
+while [ $temp -ne 0 ]
+do
+    reverse=$reverse$((temp%10))
+    temp=$((temp/10))
+done
+echo "Reverse of $number is $reverse"
+
+
+*Fetching the data from diffrent folder*
+#!/bin/bash
+filename='data.txt'
+n=1
+while read line; do
+# reading each line
+echo "Line No. $n `date +'[%Y-%m-%d %H:%M:%S]'` $line"
+n=$((n+1))
+done < $filename
+
+
+*shell scrip to dump a database into mysql*
+
+#!/bin/sh
+echo "ENTER DATA BASE NAME:"
+read dbname
+echo "ENTER DATABASE USER NAME:"
+read dbuser
+echo "ENTER DATASE PASSWORD:"
+read dbpassword
+mysqldump -u $dbuser -p$dbpassword $dbname<$dbname".sql"
+
+
+*shell script to connect a database*
+#!/bin/bash
+echo "show all tables"
+mysql -uroot -p'password' dbname<<EOFMYSQL
+show tables;
+EOFMYSQL
+echo "Count of all records"
+mysql -uroot -p'password' dbname<<EOFMYSQL
+select count(*) from tbname;
+EOFMYSQL
+
+

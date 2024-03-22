@@ -1,0 +1,229 @@
+The shell is a operating system command line interface and interpreter for the set of commands that are used to communicate with the system.
+
+command                         use
+
+*which bash      -             to see which bash is using
+
+*nano om.sh
+vi om.sh               -       write the script
+
+* chmod u+x om.sh   - give the read an execute permission
+
+*./om.sh
+bash om.sh    - execute the shell script
+
+*special variables
+$0 -file name of current script
+$n -positional parameter
+$# -Arguments supplied count
+$@ -All the Argument will be printed
+$? -Exit Status
+$$ -process the number of current shell
+$! -process the number of last background
+
+
+*Arithmetic operator*
+#!/bin/bash
+echo " enter the value of a"
+read a
+echo  "enter the value of b"
+read b
+
+echo "a+b is $(( $a + $b ))"
+echo "a-b is  $(( $a - $b))"
+echo "a*b is  $(( $a * $b))"
+echo "a/b is  $(( $a / $b))"
+
+
+
+*Relational operator*
+#!/bin/bash
+echo " enter the  value a"
+read a
+echo "enter the value b"
+read b
+
+test $a -lt  $b
+echo " $?"
+test $a  -le $b
+echo " $?"
+test $a -gt $b
+echo "$?"
+test $a -ge $b
+echo "$?"
+test $a -ne $b
+echo "$?"
+test $a -eq $b
+echo "$?"
+
+
+
+*logical opeator*
+(-a  is and operator.    -o is or opeartor)
+#!/bin/bash
+echo "enter a value of a"
+read a
+echo "enter the value of b"
+read b
+echo "enter the value of c"
+read c
+
+if test $a -ge 35 -a  $b -ge 35 -a $c -ge 35
+then
+echo "you are pass"
+else
+echo "you are fail"
+fi
+
+
+*if statement*
+#!/bin/bash
+echo  "enter a value"
+read a
+echo "enter another value"
+read b
+if  [ $a -ne $b ]
+then
+echo "whats your  age"
+read age
+echo "my age is  $age"
+else
+echo "when you death date"
+read date
+echo "your  death is $date"
+fi
+
+
+*if else*
+#!/bin/bash
+echo "enter your age a"
+read a
+echo "enter your friends age b"
+read b
+if [ $a -ge $b ]
+then
+echo "you marrage will first"
+echo "enter your marrage date"
+read date
+echo "congrats  for marrage $date"
+else
+echo "your friends will marrage first"
+echo "enter marrage date"
+read  date
+echo "congrats for marrage $date"
+fi
+
+
+*if esle if*
+#!/bin/bash
+echo "enter a  number"
+read a
+read b
+read c
+read d
+if [ $a -ge $b -a $a -ge $c -a $a -ge $d ]
+then
+echo "$a are hero"
+elif [ $b -ge $c -a $b -ge $d ]
+then
+echo "$b is hero"
+elif [ $c -ge $d ]
+then
+echo "$c is hero"
+else
+echo "$d is big"
+fi
+
+
+*Nested if statement*
+#!/bin/bash
+echo -n "Enter the first number: "
+read VAR1
+echo -n "Enter the second number: "
+read VAR2
+echo -n "Enter the third number: "
+read VAR3
+
+if [[ $VAR1 -ge $VAR2 ]]
+then
+  if [[ $VAR1 -ge $VAR3 ]]
+  then
+    echo "$VAR1 is the largest number."
+  else
+    echo "$VAR3 is the largest number."
+  fi
+else
+  if [[ $VAR2 -ge $VAR3 ]]
+  then
+    echo "$VAR2 is the largest number."
+  else
+    echo "$VAR3 is the largest number."
+  fi
+fi
+
+
+*while loop*
+#!/usr/bin/bash
+
+i=1
+while :
+do
+    echo $i
+    if [ $i -eq 20 ];
+    then
+        echo "This is end of the loop"
+        break
+    if
+    ((i++))
+
+done
+
+
+*For loop*
+#!/bin/bash
+for (( c=1; c<=5; c++ ))
+do 
+   echo "Welcome $c times"
+done
+
+#!/bin/bash
+for  table {2..20..2}
+do
+echo "$table"
+done
+
+
+*case statement*
+#!/bin/bash
+echo "pelase enter the numbers"
+read a
+read b
+
+echo "please enter the choice"
+echo "1.Addittion"
+echo "2.Substraction"
+echo "3.multiplication"
+echo "4.division"
+read ch
+
+case $ch in
+1) echo "Addittion of $a + $b is="`expr $a + $b`;;
+2) echo "substraction of $a - $b is="`expr $a - $b`;;
+3) echo "multiplication of $a * $b is="`expr $a * $b`;;
+4) echo "division of $a /$b is="`expr $a / $b`;;
+esac
+
+*filed seprator*
+#!/bin/bash
+LINE=$(cat /etc/passwd |grep $1)
+IFS=:
+set $LINE
+echo "user name = $1"
+echo "password = $2"
+echo "UID = $3"
+echo "GID = $4"
+echo "Home Dir = $5"
+echo "Current shell =$6"
+echo "Description = $7"
+
+**

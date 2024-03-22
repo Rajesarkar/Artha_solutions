@@ -1,0 +1,62 @@
+*create disk partition and mount it*
+
+#!/bin/bash
+lsblk
+# lists all the disks in the system
+
+cat /proc/partitions
+#shows all the partitions
+
+fdisk -l
+#shows the partitions
+
+fdisk /dev/sda5
+#create the partition (sda5 is the partitio name)
+
+command (m for help) :m
+#use the primary partition type
+select (defult p): p
+
+  :2
+use default 2
+
+#continously use default
+
+# give the size of memory : +5G
+
+command (m for help): w
+#w is save and exit
+
+lsblk
+#check the partition created or not
+
+cat /proc/partitions
+
+#we cant use partitions directly we need a file system
+mkfs.
+#press the tab 2 times
+
+mkfs.xfs -L myfs /dev/sda5
+#to connect forcefully
+
+mkfs.xfs -f -L myfs /dev/sda5
+
+#now we have to mount the directory
+
+mkdir /raje
+mount /dev/sda5/bkp
+
+df -h
+#shows extra file
+
+# for permenant mount
+vim /etc/fstab
+
+:wq
+:q!
+
+blkid
+#save the file system UUID
+
+vim /etc/fstab
+enter copied label

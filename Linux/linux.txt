@@ -1,0 +1,136 @@
+                                                       Linux Commands
+ 1. pwd Command
+The pwd command is used to display the location of the current working directory.
+Syntax:
+pwd
+
+2. mkdir Command
+The mkdir command is used to create a new directory under any directory.
+Syntax:
+mkdir <directory name>  
+
+3. rmdir Command
+The rmdir command is used to delete a directory.
+Syntax:
+rmdir <directory name>
+
+4. cd Command
+The cd command is used to change the current directory.
+Syntax:
+cd <directory name>  
+
+5. ls Command
+The ls command is used to display a list of content of a directory.
+Syntax:
+Ls
+
+6. touch Command
+The touch command is used to create empty files. We can create multiple empty files by executing it once.
+Syntax:
+touch <file name>  
+touch <file1>  <file2> ....  
+
+7. cat Command
+The cat command is a multi-purpose utility in the Linux system. It can be used to create a file, display content of the file, copy the content of one file to another file, and more.
+Syntax:
+cat [OPTION]... [FILE]..  
+To create a file, execute it as follows:
+cat > <file name>  
+
+8. rm Command
+The rm command is used to remove a file.
+Syntax:
+rm <file name>
+
+9. ls 
+lists the files in current directory
+Syntax:
+ls
+ls -al
+
+10.cd 
+move back or change the directory.
+syntax:
+cd --
+cd
+
+11.mkdir
+make a directory called graphics.
+Syntax:
+mkdir
+
+12.rmdir
+Remove the directory.
+Syntax:
+rmdir
+
+13.cp
+copy the file into directory.
+Syntax:
+cp file1 web-docs
+
+14.rm 
+Remove deleted files.or remove all files
+Syntax:
+rm
+rm -al
+rm *.tmp
+
+15.mv
+move or rename file
+Syntax:
+mv old.patil new.patil1
+
+16.more 
+Look at file,one page at a time.
+Syntax:
+more index.html
+
+17.lpr
+send file to printer
+Syntax:
+lpr index.patil
+
+18.man
+online manual about commands
+Syntax:
+man ls
+
+19.who
+list who is logged on your machine
+Syntax:
+who
+
+20.finger
+lists who is on computer in the lab
+Syntax:
+finger
+
+21.history
+lists the commands you have done recently.
+Syntax:
+history
+
+22.fortune 
+print random humerous message.
+Syntax:
+fortune
+
+23.date
+print out the date
+Syntax:
+date
+
+24.xcalc
+calculator
+Syntax:
+xclac &
+
+25.mpage<opt><file name>
+print all pages on a single sheet
+Syntax:
+mpage -8 file1
+
+
+
+
