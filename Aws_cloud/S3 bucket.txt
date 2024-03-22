@@ -1,0 +1,14 @@
+*creating S3 bucket*
+
+1)goto S3 
+create  a bucket
+i)goto objects click upload
+add files  select file from device
+upload the objects
+
+open one object copy the url and paste on web
+
+goto permissions 
+click edit
+give access to public
+save it

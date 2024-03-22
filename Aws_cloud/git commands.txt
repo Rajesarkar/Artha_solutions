@@ -1,0 +1,51 @@
+*create the git*
+git init
+
+*create a direcctory and file insert data in it*
+vi om
+om namah shivay
+
+*check the git status*
+git status
+
+*file add to git*
+git add .
+
+*file commit to git*
+git commit -m "any message"
+git status
+
+
+*check the logs*
+git logs
+
+*check the commit*
+git show <commit id>
+
+*add the git repository*
+git remote add origin <repo url>
+
+*everything push to the repository*
+git push -u origin master
+
+==========================
+
+*ignore the files to commit in repository*
+
+*create a gitignore repository and add the extensions of file that have to ignore*
+vi .gitignore
+
+*.css
+*.java
+
+*add the gitignore*
+git add .gitignore
+
+*commit the gitignore*
+git commit -m "any comment"
+
+*get the status*
+git status
+
+*now add files with any extension it wont add or commit the files with .css and .java extension*
+touch file1.txt file2.css file3.java

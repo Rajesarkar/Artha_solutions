@@ -1,0 +1,56 @@
+**Creating a MicroServices in Application load Balancer**
+
+1)Launch the instances
+i) Lunch  the instance for orders
+ii)launch a instance for payment
+
+2)create or no need of key pair
+
+3)Wite the script in Addittional tags
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+mkdir /var/www/html/orders/
+echo "<h1> This is orders App</h1>" >/var/www/html/orders/index.html
+systemctl start httpd
+
+4)copy the public id adress of instance and run it on web :- 13.126.156.101/orders
+
+5)Create the target groups
+i)create target group for order
+port :-80
+Health check seeting:- path= /orders/index.html
+
+*go to targets  and register the target group to instances
+
+ii)create target group for payments
+port :-80
+Health check seeting:- path= /payments/index.html
+
+*go to targets  and register the target group to instances
+
+6)Go to Load Balancer
+i) Application load balancer
+ii)select all availablity zones
+iii)Existing target group
+
+Go to listener
+view/edit rules
+
+click the + button
+insert the rule
+add condition
+path.. :- /orders*
+add action
+forward to.. :-orders
+
+insert the rule
+add condition
+path.. :- /payments*
+add action
+forward to.. :-payments
+
+7) Go to load balancer 
+Description
+copy the DNS name and run on web
+

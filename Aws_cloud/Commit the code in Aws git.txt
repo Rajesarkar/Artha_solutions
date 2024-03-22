@@ -1,0 +1,21 @@
+*Commit the code in Aws git *
+
+step 1:- start the Aws services
+
+step 2:- goto code commit
+             source code commit -> Repositories
+             creat the repository
+         
+
+step 3:-git clone codecommit://my repository
+            cd my Repository
+            git checkout -b main
+            echo "hello" > README.md
+            git add README.md
+            git commit -m "initial git commit"
+            git push origin main
+
+*Build the code in Aws git*
+
+step 1:- goto Build -> build project
+          create project name, source, Artifact
