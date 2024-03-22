@@ -1,0 +1,63 @@
+*CI continous  integration in jenkins*
+
+#create a new job 
+
+#give any name of the project
+
+#choose meaven project
+
+#Describe what you are doing
+
+#source code management 
+ choose git
+copy paste the git repository url
+
+#In Build goals and options
+clean install
+
+#post build Actions
+Archive the artifacts
+target/*jar
+
+#Build the application
+
+#Goto console output to see the output
+
+
+*Insatalling the tools*
+
+#installing mavean tool and set a path
+manage jenkins
+         |
+manage plugins
+         |
+Available (Maven)
+         |
+install without restart
+         
+#setting path of meaven tool
+manage jenkins
+         |
+Gobal tool configuration
+         |
+Download Meaven for windos from google
+ Binary Zip Archive
+ unzip the folder(Extract the folder)
+        |
+open the folder till bin is visible
+Desktop/apavhe/
+        |
+copy the path
+        |
+goto jenkins Add meaven
+uncheck install automatically
+give any name
+paste the path in (Meaven_home)
+
+
+
+#installing github tool and set the path# 
+install the complete git
+goto path until git is visible
+paste the path and end with .exe
+C:\program Files\Git\bin\git.exe

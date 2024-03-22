@@ -1,0 +1,28 @@
+*Installing Docker on Ec2 linux *
+
+step 1:- Remove any Docker files that are running in the system, using the following command:
+             sudo apt-get remove docker docker-engine docker.io
+
+step 2:- Check if the system is up-to-date using the following command:
+             sudo apt-get update
+
+step 3:-Install Docker using the following command:
+            sudo apt install -y docker.io
+
+step 4:-Install all the dependency packages using the following command:
+            sudo snap install docker
+
+step 5:-Before testing Docker, check the version installed using the following command:
+           docker --version
+
+step 6:- Pull an image from the Docker hub using the following command:
+             sudo docker run hello-world
+
+step 7:-Check if the docker image has been pulled
+             sudo docker images
+
+step 8:-To display all the containers pulled, use the following command:
+              sudo docker ps -a
+
+step 9:-To check for containers in a running state, use the following command:
+            sudo docker ps

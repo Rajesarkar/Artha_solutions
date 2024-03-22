@@ -1,0 +1,35 @@
+*kubectl Basic commands*
+
+1)create a resource from file .JSON and .YML
+kubctl create -f filename
+kubectl get deployments
+ex:- kubectl cretate deployment my-dep --image=nginx --replicas=3
+
+2)get the pods
+kubectl get pods
+kubectl get pods -o wide
+
+3)Expose a resource as a new kubernetes service
+kubectl expose deployment nginx --port=80 --target-port=8000
+kubectl get svc
+
+4)Delete the resources
+kubectl delete pods, services -l name=(.yaml file name)
+kubectl delete pods --all
+
+5)Autoscaling the pods
+kubectl autoscale filename foo --min=2 --max=10
+kubectl scale --replicas=3 filename
+
+6)Describe 
+kubectl describe pods (pod name)
+
+7)check the logs
+kubectl logs -f -p (pod type or name) --all containers=true
+
+8)execute a command in container
+kubectl exec (pod type or name) -c container --command [args..]
+kubectl exec mypod --date
+
+
+

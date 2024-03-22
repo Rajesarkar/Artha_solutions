@@ -1,0 +1,45 @@
+*installing kubernetes on linux/ubuntu*
+
+#for installation we need
+2 GB or more of RAM per machine
+2 CPUs or more.
+
+#install docker 
+sudo apt-get update
+sudo apt-get install docker.io
+docker ––version
+
+i)start and enable docker
+sudo systemctl enable docker
+sudo systemctl status docker
+sudo systemctl start docker
+
+#Then install kubernetes
+i)Add kubernetes signing keys
+sudo apt-get install curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+
+ii)Add it to software repositories
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+
+iii)kubernetes installation tools
+sudo apt-get install kubeadm kubelet kubectl
+kubeadm version
+
+iv)Begin kubernitites deployment
+sudo swapoff –a
+
+v)Assign unique hostname for each server
+sudo hostnamectl set-hostname master-node
+sudo hostnamectl set-hostname worker01
+
+vi)Inititalise kubernities on master node
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+vii)Deploy pod network to the cluster
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl get pods --all-namespaces
+
+viii)join worker node to cluster
+kubeadm join --discovery-token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234..cdef 1.2.3.4:6443
+kubectl get nodes

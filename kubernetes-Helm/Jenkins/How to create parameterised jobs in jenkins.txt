@@ -1,0 +1,17 @@
+*How to create parameterised jobs in jenkins*
+
+step 1:-strat jenkins
+          goto manage plugins -> Download same plugin of parameter
+
+step 2:- create a job 
+            goto paratemeterized job ->select the parameter
+            
+step 3:- Builde 
+           goto execute shell scipt
+    syntax
+           Windows - %parametername%
+           linux/mac - $parametername
+                              ${parametername}
+                              "${parametername}"
+
+step 4:- Run or  Build

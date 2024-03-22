@@ -1,0 +1,25 @@
+#create the k8s cluster
+#create the virtual machine
+#connect gitbash to virtual machine
+
+# connect to ssh key in the location  
+ssh -i k8s-vm-key.pem azureuser@20.93.32.3
+
+#command to install Azure cli 
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+az login
+copy the link and code
+
+#install-cli  it install kubernetes  
+az aks install-cli
+
+#commands to install docker
+sudo apt-get remove docker docker-engine docker.io   
+sudo apt-get update
+sudo apt install -y docker.io
+sudo snap install docker
+
+#got the k8s connect with two commands
+ az account set --subscription 88b4b50a-017a-4dce-b6c7-f1e0a66f5ae5  
+ az aks get-credentials --resource-group k8s --name k8s-cluster --admin
+

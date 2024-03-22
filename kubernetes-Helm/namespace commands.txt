@@ -1,0 +1,7 @@
+*Kubernentes namespace*
+
+kubectl get namespaces
+kubecl create namespace (name)
+kubectl delete namespace (name)
+kubectl config set-context $ (kubectl config current-context) --namespace=(name)
+kubectl config view | grep namespace:

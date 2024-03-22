@@ -1,0 +1,149 @@
+helm create hellow-world
+helm install omkar hellow-world
+helm install [release-name] [chart-name]
+helm install --dry-run omkar hellow-worlds
+helm install --wait --timeout 20s omkar hellow-world
+helm  delete [release-name]
+helm list
+helm install [release-name] [chart-name] --set servicetype=Nodeport
+helm get all [all,mainfest,values] [release-name]
+helm status [release-name]
+
+helm hisory [release-name]
+helm delete [release-name]
+helm upgrade [release-name] [chart-name]
+helm rollback [release-name] [chart-name]
+
+*Download chart from repository*
+helm pull [chart-name]
+helm pull stable/tomcat
+helm pull --untar [chart-name]
+helm pull stable/tomcat --untar
+
+helm show values bitnami/tomcat
+helm show values bitnami/tomcat > myvalues.yaml
+
+helm upgrade my-tomcat -f myvalues.yaml
+vi myvalues.yaml
+helm template bitnami/tomcat  > my-template.yaml
+
+
+     *Add, Remove, and Update Repositories*
+
+helm repo add [repository-name] [url]
+
+helm repo remove [repository-name]
+
+helm repo update
+
+helm repo list
+
+
+     *List and Search Repositories*
+
+helm repo list
+
+helm repo index
+
+helm search [keyword]
+
+helm search hub [keyword]
+
+
+     *Chart Management*
+
+helm create [name]
+
+helm package [chart-path]
+
+helm lint [chart]
+
+helm show all [chart]
+
+helm show chart [chart]
+
+helm pull [chart]
+
+helm pull [chart] --untar --untardir [directory]
+
+helm dependency list [chart]
+
+
+      *Get Help and Version Information*
+
+helm --help
+
+helm [command] --help
+
+helm version
+
+
+     *Plugin Management*
+
+helm plugin install [path/url1] [path/url2] ...
+
+helm plugin list
+
+helm plugin update [plugin1] [plugin2] ...
+
+helm plugin uninstall [plugin]
+
+     
+	 *Release Monitoring*
+
+helm list
+
+helm list --all-namespaces
+
+helm list --namespace [namespace]
+
+helm list --output [format]
+
+helm list --filter '[expression]'
+
+helm status [release]
+
+helm history [release]
+
+helm env
+
+
+     *Download Release Information*
+
+helm get all [release]
+
+helm get hooks [release]
+
+helm get manifest [release]
+
+helm get notes [release]
+
+helm get values [release]
+
+helm history [release]
+
+     *Perform App Upgrade and Rollback*
+
+helm upgrade [release] [chart]
+
+helm upgrade [release] [chart] --atomic
+
+helm upgrade [release] [chart] --install
+
+helm upgrade [release] [chart] --version [version-number]
+
+helm rollback [release] [revision]
+
+     *Install and Uninstall Apps*
+
+helm install [app-name] [chart]
+
+helm install [app-name] [chart] --namespace [namespace]
+
+helm install [app-name] [chart] --values [yaml-file/url]
+
+helm install [app-name] --dry-run --debug
+
+helm uninstall [release]
+
+

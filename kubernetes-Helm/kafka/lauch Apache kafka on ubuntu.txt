@@ -1,0 +1,32 @@
+*Launch a Apache kafka in ubuntu*
+
+step 1:- install java and set path of java
+ sudo apt-get update
+ java -version
+ sudo apt-get install default-jdk
+ sudo apt-get install default-jre
+ export JAVA_HOME='/usr/lib/jvm/jre-1.8.0-openjdk'
+ export JRE_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
+
+step 2:-install Apache Kafka and Extract it
+ wget https://archive.apache.org/dist/kafka/3.2.1/kafka_2.13-3.2.1.tgz
+ tar -xzf kafka_2.13-3.2.1.tgz
+ cd kafka_2.13-3.2.1
+
+step 3:-Start the zookeeper and kafka server
+ bin/zookeeper-server-start.sh config/zookeeper.properties
+ bin/kafka-server-start.sh config/server.properties
+ 
+or
+ 
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties >> zookeeper.log &
+nohup bin/kafka-server-start.sh config/server.properties >> kafka.log &
+
+step 4:-create and describe the topic
+ bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+ bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
+
+
+step 5:-Write some events to the topic and Read it
+ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092 
+ bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092

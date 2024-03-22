@@ -1,0 +1,50 @@
+*Docker network commands*
+
+1)Bridge network
+ sudo docker network create  --driver=bridge  king
+ sudo docker network ls
+ sudo docker network inspect (id or name)
+
+#it will connect to default container
+ sudo docker run -it -d --name=king 
+ sudo docker network inspect (id or name)
+
+sudo docker exec -it (id or name) bash
+ apt update && apt install iputils-ping
+
+#take the default conatianer ip adress and ping it into the another created container
+sudo docker exec -it (id or name) bash
+ping 172.22.4.9
+
+2)Host network
+ sudo docker run -it -d --network=host  --name=king  nginx:latest
+ curl localhost
+ # it dosent show the ip  adress
+ sudo docker inspect 
+
+3)overlay network
+#Run the two diffrent host
+# Two diffrent hosts are manager and worker node
+i)The host installing docker swarm is manager node
+ sudo docker swarm init
+
+ii) The host which adding by docker key is worker node
+ (copy and paste manager key ) 
+ 
+sudo docker create --network=overlay --name=king
+sudo docker service create --name=king --network=overlay --replicas=3 nginx:latest
+ sudo docker service ps (id or name)
+sudo docker service ls
+
+#start the containers on two diffrent host  or two diffrent ec2 instances
+# connect the host network container to another container
+sudo docker exec -it bash
+apt update && apt install iputils-ping -y
+ping (another con ip)
+
+4)None network
+ sudo docker run -it -d --name=king --network=none ubuntu
+#it cannot connected to another network because it dosent have id adress
+
+
+ 

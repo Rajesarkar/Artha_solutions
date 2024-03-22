@@ -1,0 +1,29 @@
+**Create Auto Scaling**
+
+1)Create an EC2 instance
+go to actions 
+create an image or directly create the AMI(Amazon machine Image)
+
+2)Create an Template
+add image in template
+
+3)Create the target groups
+gives the minimum and maximum ,desieed number of instances
+
+
+**Elastic Load Balancing ELB**
+6)Go to Load Balancer
+i) Application load balancer
+ii)select all availablity zones
+iii)Existing target group
+
+Go to listener
+view/edit rules
+
+click the + button
+insert the rule
+add condition
+path.. :- /orders*
+add action
+forward to.. :-orders
+

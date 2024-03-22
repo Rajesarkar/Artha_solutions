@@ -1,0 +1,11 @@
+*Jenkins tutorial How to use CLI - command line interface*
+
+step 1:- start jenkins
+
+step 2:- goto manage jenkins -> configure global security -> enable security
+
+step 3:-http://localhost:8080/cli/
+
+step 4:- check the jenkins command line is working 
+             Run the command 
+             goto user -> configure ->check the SSh key as a password

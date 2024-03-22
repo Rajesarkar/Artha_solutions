@@ -1,0 +1,59 @@
+*Create kubernets cluster*
+
+minikube  version
+minikube start
+minukube status
+
+#check the cluster version
+kubectl version
+
+#check cluster information
+kubectl get-info
+kubectl get nodes
+
+*Deploy a app on cluster*
+
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+kubectl get deployments
+
+*pods*
+
+kubectl get pods
+kubectl describe pods
+kubectl proxy
+
+#check the envorment variable
+kubectl exec $POD_NAME -- env
+
+#go inside the pod
+kubectl exec -it $POD_NAME -- bash
+
+*Service*
+
+kubectl get services
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+kubectl describe services/kubernetes-bootcamp
+echo NODE_PORT=$NODE_PORT
+curl $(minikube ip):$NODE_PORT
+kubectl delete service -l app=kubernetes-bootcamp
+
+*Scaling up*
+
+kubectl get deployments
+#check the replica
+kubectl get rs
+kubectl scale deployments/kubernetes-bootcamp --replicas=4
+kubectl get pods -o wide
+kubectl describe deployments/kubernetes-bootcamp
+
+#scale down
+kubectl scale deployments/kubernetes-bootcamp --replicas=2
+kubectl get deployments
+kubectl get pods
+
+*update the version *
+kubectl get deployments
+kubectl get pods
+kubectl describe pods
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+kubectl rollout status deployments/kubernetes-bootcamp

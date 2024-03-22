@@ -1,0 +1,114 @@
+ *Launch  tomat server on EC2 linux*
+
+step 1) 
+*open the amazon aws console
+*create the EC2 instance
+*connect Ec2 instance to gitbash/ubuntu
+*In the security group Edit inbound rules
+ add the TCP port 8080
+
+step 2)
+ #update list of repositories
+  sudo apt-get update
+
+step 3)
+*To see the java version
+java -version
+
+ #install jre and jdk
+  sudo apt-get install default-jdk
+  sudo apt-get install default-jre
+
+step 4)
+ #set export variables for java
+  export JAVA_HOME='/usr/lib/jvm/jre-1.8.0-openjdk'
+  export JRE_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
+
+step 5)
+#goto root folder
+sudo su -
+#goto Download tomcat in google copy the link of
+tomcat 8 = tar.gz(pgp,sha512)
+
+#goto gitbash
+wget (paste the link)
+ls
+
+#extract these file
+ tar -xvzf apache-tomcat-8.5.82.tar.gz
+ls
+
+step 6)
+#renaming foldername to smaller folder name
+mv apache-tomcat-8.5.82 tomcat
+ls
+
+step 7)
+#go inside the tomcat folder
+cd tomcat
+cd bin
+ls
+(here we see startup.sh and shutdown.sh)
+
+#start the tocat server
+./startup.sh
+
+copy the public ip address and run it on web
+ex:-34.238.247.23:8080
+click on manager  App
+
+step 8)
+#find context.xml
+find / -name context.xml
+(sows the folders)
+      1) /root/tomcat/webapps/manager/META-INF/context.xml
+      2) /root/tomcat/webapps/host-master/META-INF/context.xml
+
+#copy the first one manger
+vi (paste it 1 manager)
+#insert and comment out value
+<!--  <value classname ...   
+              .......... 0:0:1"/>  -->
+(save it)
+
+vi (paste 2nd host manager)
+#insert and comment out value
+ <!--  <value classname ...   
+              .......... 0:0:1"/> -->
+(save it)
+
+step 9)
+#goto tomcat and refresh it
+
+#create the username and password
+cd ..
+cd ..
+goto tomcat directory
+cd conf 
+vi tomcat-users.xml
+
+#insert the code at last
+-->
+
+ <role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ <user username="deployer" password="deployer" roles="manager-script"/>
+ <user username="tomcat" password="s3cret" roles="manager-gui"/>
+
+</tomcat-users>
+
+./shutdown.sh
+./startup.sh
+
+step 10)
+# goto the ipv4 adress and refresh it
+username = tomcat
+password =s3cret
+
+
+sudo chmod 777 * (gives permission to all folders in file)
+
+

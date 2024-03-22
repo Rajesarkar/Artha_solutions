@@ -1,0 +1,195 @@
+**Kubernetes Networking commands**
+
+1)container to container communication inside the pod
+first we have to create multiple containers inside the pod
+*kubectl get pods
+*kubectl exec -it -c container1 /bin/bash
+*apt-get -y update; apt-get -y install curl
+*curl localhost:80
+
+2)pod to pod communication  
+Run multiple pods inside the node
+*kubectl create deploymet.yml
+*kubectl gets pods -0 wide
+*curl podip:80
+
+3)ClusterIp
+*kubectl create service.yml
+#cluster ip configuration
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+*kubectl create deployment.yml
+*kubectl get pods 
+*kubectl get svc
+get the cluster ip which will be mapped to all pod ip's
+*curl ClusterIp:80
+
+4)Nodeport
+*kubectl create service.ymll
+#Nodeport configuration
+
+apiVersion: v1
+kind: Service
+metadata:  
+  name: my-nodeport-service
+spec:
+  selector:    
+    app: my-app
+  type: NodePort
+  ports:  
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30036
+    protocol: TCP
+
+*kubectl create deployment.yml
+*kubectl get pods 
+*kubectl get svc
+it will show the current port is exposed to Nodeport which will be in 30000-32767
+*kubectl get nodes
+*kubectl get nodes -0 wide
+it shows the node internal and external ip
+*ExternalIp:80 (Acces Externally)
+
+5)Loadbalancer
+*kubectl create service.yml
+#Loadbalancer configuration
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+*kubectl create deployment.yml
+*kubectl get pods 
+*kubectl get svc
+it will show the externelip  created in the services
+*ExternalIp:80
+
+====================================================
+
+**Kubernetes Volume commands**
+
+Container are connected to pods volume and shares the volume
+
+1)emptyDir
+*kubectl create volume.yml
+#Configuration of EmptyDir
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-emptydir
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    volumeMounts:
+    - name: test-vol
+      mountPath: /test-mnt
+  volumes:
+  - name: test-vol
+    emptyDir: {}
+
+*kubectl create deployment.yml
+*kubectl get pods 
+
+2)hostpath
+*kubectl create volume.yml
+#Configuration of Hostpath
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-hostpath
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      volumeMounts:
+      - mountPath: /test-mnt
+        name: test-vol
+  volumes:
+  - name: test-vol
+    hostPath:
+      path: /test-vol
+
+*kubectl create deployment.yml
+*kubectl get pods 
+
+3)presistent volume claim (pvc)
+*kubectl create pvc.yml
+#Creating Persistent volume
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: store-persistent-volume
+  namespace: test
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/Volumes/Data/data"
+
+*kubectl create pvc-claim.yml
+#Claiming persistent volume
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: store-persistent-volume-claim
+  namespace: test
+spec:
+  storageClassName: hostpath
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+*kubectl create volume.yml
+#configuration for creating pvc
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+	
+*kubectl create deployment.yml
+*kubectl get pods

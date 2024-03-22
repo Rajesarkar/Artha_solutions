@@ -1,0 +1,54 @@
+*creating VPC server*
+
+1)Goto service type vpc
+
+2)goto your vpc create vpc
+CIDR :-10.0.0.0/16
+
+3)create internet gateway
+it connect to outer world
+
+i)goto actions attach to vpc
+ii)select your vpc
+
+4)create the subnet
+subnet is a part of network it is a range of ip adress of vpc
+
+create subnets
+name:- public subnet
+cidr:- 10.0.1.0/24
+
+name:-private subnet
+cidr:-10.0.2.0/24
+
+5)create route tables
+create public and private route tables
+name tag:- public , private
+
+i)click public route table
+go on routes 
+Edit routs
+Add routs
+0.0.0.0/0           created vpc
+
+go on subnet associations
+edit subnet association 
+select public association
+
+ii)goto private route table
+no need to add route
+goto subnet associations
+edit subnet association
+select private subnet association
+
+6)security groups
+already default security group will be select
+go to inbound rules
+add rule
+all traffic       myip
+
+7)Network ACls
+goto inbound rules
+replace the source with your ip
+
+8)Attach the public and private subnet ti instances while creatin the instancess

@@ -1,0 +1,66 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb-deployment
+  labels:
+    app: mariadb
+    type: database
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mariadb
+        type: database
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          ports:
+            - containerPort: 3306
+              name: db-port
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: admin
+            - name:  MYSQL_DATABASE
+              value: dip_test_db
+            - name:  MYSQL_USER
+              value: dip_admin
+            - name:  MYSQL_PASSWORD
+              value: dip_admin
+      volumes:
+        - ./sql:/docker-entrypoint-initdb.d
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  namespace: tomcat-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat-deployment
+  template:
+    metadata:
+      labels:
+        app: tomcat-deployment
+    spec:
+      containers:
+      - image:  tomcat:9.0.70-jdk8-corretto-al2
+        name: tomcat-container-nautilus
+        ports:
+        - containerPort: 8080
+        environment:
+        - dbUrl: jdbc:mariadb://db:3306/dip_test_db?allowPublicKeyRetrieval=true&useSSL=false
+        - dbUse: ZGlwX2FkbWlu
+        - JDBC_PASS: dip_admin
+        DIP_CONFIG_PATH:
+        - /opt/dip/
+      volumes:
+       - ./war:/usr/local/tomcat/webapps
+       - ./config:/opt/dip/
+      links:
+      - db
+
+
